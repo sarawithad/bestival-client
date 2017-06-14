@@ -9,14 +9,55 @@
 
 
 <body ng-app="bestivalApp">
-    <div ng-view></div>
-    
+<div class="intro">
+    <h1>bestival</h1>
+    <h3>the music festival curation and recommendation engine</h3>
+</div>
+    <br>
+    <br>
+<div class="optionhead">
+    <h2>Choose from 2 or more of the categories below to receive your customized festival recommendation:</h2>
+</div>
 
+<div ng-view></div>
+    
+<div class="categories">
+    <div>
+        <a href="#" ng-click="toggleOptions($event)">Artists</a>
+        <div ng-repeat="artist in artists">
+            <p><input type="checkbox">{{artist.artist_name}}</p>
+        </div>
+    </div>
+    <br>
+    <div>
+        <a href="#" ng-click="toggleOptions($event)">Genres</a>
+        <div ng-repeat="genre in genres">
+            <p><input type="checkbox">{{genre.genre_name}}</p>
+        </div>
+    </div>
+    <br>
+    <div>
+        <a href="#" ng-click="toggleOptions($event)">Locations</a>
+        <div ng-repeat="location in locations">
+            <p><input type="checkbox">{{location.state_name}}</p>
+        </div>
+    </div>
+    <br>
+    <div>
+        <a href="#" ng-click="toggleOptions($event)">Dates</a>
+        <div ng-repeat="date in dates">
+            <p><input type="checkbox">{{date.month}}</p>
+        </div>
+    </div>
+</div>
 
 
 
     <script type="text/javascript" src="app/app.js"></script>
+    <script type="text/javascript" src="app/factories/DataFactory.js"></script>
+    <script type="text/javascript" src="app/factories/CategoriesCtrl.js"></script>
 </body>
+
 
 
 
