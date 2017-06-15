@@ -3,62 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <title>bestival</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
     <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Coming+Soon|Nothing+You+Could+Do|Nova+Mono|Over+the+Rainbow|Permanent+Marker|Rock+Salt|Schoolbell|Vibur" rel="stylesheet">
 </head>
 
 
-
 <body ng-app="bestivalApp">
-<div class="intro">
-    <h1>bestival</h1>
-    <h3>the music festival curation and recommendation engine</h3>
-</div>
-    <br>
-    <br>
-<div class="optionhead">
-    <h2>Choose from 2 or more of the categories below to receive your customized festival recommendation:</h2>
-</div>
+    <div class="bkgrnd">
+        <div class="intro">
+            <h1 class="bestival">bestival</h1>
+            <h4 class="tagline">the music festival curation<br>and recommendation engine</h4>
+        </div>
 
-<div ng-view></div>
+        <br>
+        <br>
+
+        <div class="optionhead">
+            <h5>choose from 2 or more of the categories below<br>to receive your customized festival recommendation:</h5>
+        </div>
     
-<div class="categories">
-    <div>
-        <a href="#" ng-click="toggleOptions($event)">Artists</a>
-        <div ng-repeat="artist in artists">
-            <p><input type="checkbox">{{artist.artist_name}}</p>
+        <br>
+        <br>
+
+        <div ng-view></div>
+    
+        <div>
+            <div ng-controller="ArtistCtrl" ng-init="loadArtistData()">
+                <a href="#" ng-click="toggleOptions($event)" class="categories collapsible popout">artists</a>
+                <div class="row option-block">
+                    <span class="col s3 options-to-check" ng-repeat="artist in artists">
+                        <input type="checkbox" ng-model="artist.checked" ng-checked="getCheckedOptions(typeKey, $index, value)" >
+                        <label>{{artist.artist_name}}</label>
+                    </span>
+                </div>
         </div>
-    </div>
+
+        <br>
+
+            <div ng-controller="GenreCtrl" ng-init="loadGenreData()">
+                <a href="#" ng-click="toggleOptions($event)" class="categories collapsible popout">genres</a>
+                <div class="row option-block">
+                    <span class="col s2 options-to-check" ng-repeat="genre in genres">
+                        <input type="checkbox" ng-model="genre.checked" ng-change="getSelections()" >
+                        <label>{{genre.genre_name}}</label>
+                    </span>
+                </div>
+            </div>
+
+        <br>
+
+
+            <div ng-controller="LocationCtrl" ng-init="loadLocationData()">
+                <a href="#" ng-click="toggleOptions($event)" class="categories collapsible popout">locations</a>
+                <div class="row option-block">
+                    <span class="col s1 options-to-check" ng-repeat="location in locations">
+                        <input type="checkbox" ng-model="location.checked" ng-change="getSelections()" >
+                        <label>{{location.state_name}}</label>
+                    </span>
+                </div>
+            </div>
+
     <br>
-    <div>
-        <a href="#" ng-click="toggleOptions($event)">Genres</a>
-        <div ng-repeat="genre in genres">
-            <p><input type="checkbox">{{genre.genre_name}}</p>
-        </div>
+
+
+            <div ng-controller="DateCtrl" ng-init="loadDateData()">
+                <a href="#" ng-click="toggleOptions($event)" class="categories collapsible popout">dates</a>
+                <div class="row option-block">
+                    <span class= "col s3 options-to-check" ng-repeat="date in dates">
+                        <input type="checkbox" ng-model="date.checked" ng-change="getSelections()" >
+                        <label>{{date.month}} {{date.year}}</label>
+                    </span>
+                </div>
+            </div>
+
+
     </div>
+
     <br>
-    <div>
-        <a href="#" ng-click="toggleOptions($event)">Locations</a>
-        <div ng-repeat="location in locations">
-            <p><input type="checkbox">{{location.state_name}}</p>
-        </div>
-    </div>
     <br>
-    <div>
-        <a href="#" ng-click="toggleOptions($event)">Dates</a>
-        <div ng-repeat="date in dates">
-            <p><input type="checkbox">{{date.month}}</p>
-        </div>
-    </div>
+
+    <button class="btn waves-effect waves-light" type="submit" name="action">find my bestival</button>
+
+    <br>
+    <br>
+
 </div>
 
-
-
+    <script src="/lib/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+    <script src="/lib/node_modules/angular/angular.min.js"></script>
+    <script src="/lib/node_modules/angular-route/angular-route.min.js"></script>
     <script type="text/javascript" src="app/app.js"></script>
-    <script type="text/javascript" src="app/factories/DataFactory.js"></script>
-    <script type="text/javascript" src="app/factories/CategoriesCtrl.js"></script>
+    <script type="text/javascript" src="app/factories/ArtistFactory.js"></script>
+    <script type="text/javascript" src="app/factories/GenreFactory.js"></script>
+    <script type="text/javascript" src="app/factories/LocationFactory.js"></script>
+    <script type="text/javascript" src="app/factories/DateFactory.js"></script>
+    <script type="text/javascript" src="app/controllers/ArtistCtrl.js"></script>
+    <script type="text/javascript" src="app/controllers/GenreCtrl.js"></script>
+    <script type="text/javascript" src="app/controllers/LocationCtrl.js"></script>
+    <script type="text/javascript" src="app/controllers/DateCtrl.js"></script>
+    <script type="text/javascript" src="app/controllers/CategoriesCtrl.js"></script>
+
 </body>
-
-
 
 
 </html>
