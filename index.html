@@ -29,14 +29,16 @@
         <div ng-view></div>
     
         <div>
+        <form>
             <div ng-controller="ArtistCtrl" ng-init="loadArtistData()">
                 <a href="#" ng-click="toggleOptions($event)" class="categories collapsible popout">artists</a>
                 <div class="row option-block">
                     <span class="col s3 options-to-check" ng-repeat="artist in artists">
-                        <input type="checkbox" ng-model="artist.checked" ng-checked="getCheckedOptions(typeKey, $index, value)" >
-                        <label>{{artist.artist_name}}</label>
+                        <input id="{{artist.artist_name}}" type="checkbox" ng-model="artist.checked" ng-change=artistsChanged(artist.artist_name)>
+                        <label for="{{artist.artist_name}}">{{artist.artist_name}}</label>
                     </span>
                 </div>
+        </form>
         </div>
 
         <br>
@@ -45,8 +47,8 @@
                 <a href="#" ng-click="toggleOptions($event)" class="categories collapsible popout">genres</a>
                 <div class="row option-block">
                     <span class="col s2 options-to-check" ng-repeat="genre in genres">
-                        <input type="checkbox" ng-model="genre.checked" ng-change="getSelections()" >
-                        <label>{{genre.genre_name}}</label>
+                        <input id="{{genre.genre_name}}"type="checkbox" ng-model="genre.checked" ng-change="getSelections()" >
+                        <label for="{{genre.genre_name}}">{{genre.genre_name}}</label>
                     </span>
                 </div>
             </div>
@@ -58,8 +60,8 @@
                 <a href="#" ng-click="toggleOptions($event)" class="categories collapsible popout">locations</a>
                 <div class="row option-block">
                     <span class="col s1 options-to-check" ng-repeat="location in locations">
-                        <input type="checkbox" ng-model="location.checked" ng-change="getSelections()" >
-                        <label>{{location.state_name}}</label>
+                        <input id="{{location.state_name}}" type="checkbox" ng-model="location.checked" ng-change="getSelections()" >
+                        <label for="{{location.state_name}}">{{location.state_name}}</label>
                     </span>
                 </div>
             </div>
@@ -71,8 +73,8 @@
                 <a href="#" ng-click="toggleOptions($event)" class="categories collapsible popout">dates</a>
                 <div class="row option-block">
                     <span class= "col s3 options-to-check" ng-repeat="date in dates">
-                        <input type="checkbox" ng-model="date.checked" ng-change="getSelections()" >
-                        <label>{{date.month}} {{date.year}}</label>
+                        <input id="{{date.month}} {{date.year}}" type="checkbox" ng-model="date.checked" ng-change="getSelections()">
+                        <label for="{{date.month}} {{date.year}}">{{date.month}} {{date.year}}</label>
                     </span>
                 </div>
             </div>
