@@ -10,5 +10,8 @@ app.controller("ArtistCtrl", function($scope, $routeParams, ArtistFactory, $loca
         });
     };
 
+    $scope.artistsChecked = function(artist){
+    
+    };
 
 });
