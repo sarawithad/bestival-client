@@ -1,16 +1,34 @@
 "use strict";
 
-app.controller('CategoriesCtrl', ['$scope', function($scope){
-  $scope.selectedOptions = {};
-  $scope.inputs = {
-    'artists':[], 'genres':[], 'locations':[], 'dates':[]
+app.controller("CategoriesCtrl", function($scope, $routeParams, ArtistFactory, $location){
+
+
+  // $scope.getCheckedOptions = function(typeKey, $index, value) {
+  //   $scope.selectedOptions[typeKey] = $scope.selectedOptions[typeKey] || [];
+  //   $scope.selectedOptions[typeKey][$index] = value;
+  // };
+
+  let festivalOptions = [];
+
+  $scope.checkedOptionsModel = {
+    artists: false,
+    genres: false,
+    locations: false,
+    dates: false
   };
 
-  $scope.getCheckedOptions = function(typeKey, $index, value) {
-    $scope.selectedOptions[typeKey] = $scope.selectedOptions[typeKey] || [];
-    $scope.selectedOptions[typeKey][$index] = value;
+
+  $scope.getCheckedOptions = () => {
+    for(var option in $scope.checkedOptionsModel) {
+      if ($scope.checkedOptionsModel[option]) {
+      festivalOptions.push();
+      console.log("i got your options");
+      }
+    }
   };
- 
+
+
+
 //     $scope.isVisible = false; // let's set this to false to kick things off.
      
 //     $scope.toggleOptions(event);
@@ -51,6 +69,6 @@ app.controller('CategoriesCtrl', ['$scope', function($scope){
   //   $scope.selectedData = results;
   // }
  
-}]);
+});
 
 
