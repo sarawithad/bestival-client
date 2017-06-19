@@ -4,6 +4,12 @@ app.controller("OptionsCtrl", function($scope, $routeParams, filterFilter, DataF
 
     $scope.userSelection = [];
 
+    $scope.allCheckedOptions = [];
+
+    // var choices = OptionsFactory.getSelectedOptions();
+
+    // $scope.allCheckedOptions = choices;
+
     //gets and loads Artist data from bestival API and checks to see which artists have been selected
     $scope.loadArtistData = () => {
         DataFactory.getArtistData()
@@ -11,10 +17,12 @@ app.controller("OptionsCtrl", function($scope, $routeParams, filterFilter, DataF
             console.log("response:", response);
             $scope.artists = response.data;
 
-            $scope.$watch('artists|filter:{checked:true}', function (nv) {
-                console.log("nv:", nv);
-                $scope.userSelection = nv.map(function (artist) {
-                  return artist.name;
+            $scope.$watch('artists|filter:{checked:true}', function (artistvalues) {
+                console.log("artistvalues:", artistvalues);
+                $scope.userSelection = artistvalues.map(function (artist) {
+                    $scope.allCheckedOptions.push(artist.artist_name);
+                    console.log("$scope.allCheckedOptions: ", $scope.allCheckedOptions);
+                    return artist.name;
                 });
             }, true);
         });
@@ -31,10 +39,12 @@ app.controller("OptionsCtrl", function($scope, $routeParams, filterFilter, DataF
             console.log("response:", response);
             $scope.genres = response.data;
 
-            $scope.$watch('genres|filter:{checked:true}', function (nv) {
-                console.log("nv:", nv);
-                $scope.userSelection = nv.map(function (genre) {
-                  return genre.name;
+            $scope.$watch('genres|filter:{checked:true}', function (genrevalues) {
+                console.log("genrevalues:", genrevalues);
+                $scope.userSelection = genrevalues.map(function (genre) {
+                    $scope.allCheckedOptions.push(genre.genre_name);
+                    console.log("$scope.allCheckedOptions: ", $scope.allCheckedOptions);                
+                    return genre.name;
                 });
             }, true);
         });
@@ -51,10 +61,12 @@ app.controller("OptionsCtrl", function($scope, $routeParams, filterFilter, DataF
             console.log("response:", response);
             $scope.locations = response.data;
 
-            $scope.$watch('locations|filter:{checked:true}', function (nv) {
-                console.log("nv:", nv);
-                $scope.userSelection = nv.map(function (location) {
-                  return location.name;
+            $scope.$watch('locations|filter:{checked:true}', function (locationvalues) {
+                console.log("locationvalues:", locationvalues);
+                $scope.userSelection = locationvalues.map(function (location) {
+                    $scope.allCheckedOptions.push(location.state_name);
+                    console.log("$scope.allCheckedOptions: ", $scope.allCheckedOptions);
+                    return location.name;
                 });
             }, true);
         });
@@ -71,10 +83,12 @@ app.controller("OptionsCtrl", function($scope, $routeParams, filterFilter, DataF
             console.log("response:", response);
             $scope.dates = response.data;
 
-            $scope.$watch('dates|filter:{checked:true}', function (nv) {
-                console.log("nv:", nv);
-                $scope.userSelection = nv.map(function (date) {
-                  return date.name;
+            $scope.$watch('dates|filter:{checked:true}', function (datevalues) {
+                console.log("datevalues:", datevalues);
+                $scope.userSelection = datevalues.map(function (date) {
+                    $scope.allCheckedOptions.push(date.month, date.year);
+                    console.log("$scope.allCheckedOptions: ", $scope.allCheckedOptions);
+                    return date.name;
                 });
             }, true);
         });
@@ -86,9 +100,5 @@ app.controller("OptionsCtrl", function($scope, $routeParams, filterFilter, DataF
 
 
 
-
-    $scope.allOptions = function allOptions() {
-        return $scope.artistsChecked + $scope.genresChecked + $scope.locationsChecked + $scope.datesChecked;
-    };
 
 });
