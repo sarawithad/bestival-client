@@ -1,0 +1,11 @@
+    <div ng-init="loadFestivalData()">
+        <div class="row option-block">
+            <div ng-repeat="festival in festivals">
+            <h5 class="col s2">{{festival.festival_name}}</h5>
+                <p>Artists: <span ng-repeat="artist in festival.artists">{{artist}}</span></p>
+                <p>Genres: <span ng-repeat="genre in festival.genres">{{genre}}</span></p>
+                <p>Location: <span>{{festival.location}}</span></p>
+                <p>Date: {{festival.date}}</p>
+            </div>
+        </div>
+    </div>

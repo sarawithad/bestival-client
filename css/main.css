@@ -12,6 +12,8 @@ body {
     opacity: 0.2;
 }*/
 
+
+
 .bkgrnd {
     background-color: white;
     opacity: 0.85;
@@ -25,15 +27,16 @@ body {
     font-family: 'Nothing You Could Do', cursive;
     font-size: 9em;
     font-weight: bold;
-    margin: 1.5em;
-    margin-bottom: -.5em;
+    margin-top: .25em;
+    margin-bottom: -.75em;
     padding: .5em;
 }
 
 .tagline {
-    font-size: 3em;
+    font-size: 1.25em;
     text-align: center;
     font-family: 'Nothing You Could Do', cursive;
+    margin-bottom: 2em;
 }
 
 .intro {
