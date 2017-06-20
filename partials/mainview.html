@@ -1,0 +1,56 @@
+
+        <div ng-init="loadArtistData()">
+            <div class="optionhead">
+                <h5>choose from 2 or more of the categories below<br>to receive your customized festival recommendation:</h5>
+            </div>
+        <a href="#" class="categories">artists</a>
+            <div class="row option-block">
+                    <span class="col s3 options-to-check" ng-repeat="artist in artists">
+                        <input id="{{artist.artist_name}}" type="checkbox" ng-model="artist.checked" name="artistsChecked[]" value="{{artist.artist_name}}">
+                        <label for="{{artist.artist_name}}">{{artist.artist_name}}</label>
+                    </span>
+            </div>
+    </div>
+
+    <br>
+
+    <div ng-init="loadGenreData()">
+        <a href="#" class="categories">genres</a>
+            <div class="row option-block">
+                <span class="col s2 options-to-check" ng-repeat="genre in genres">
+                    <input id="{{genre.genre_name}}" type="checkbox" ng-model="genre.checked" name="genresChecked[]">
+                    <label for="{{genre.genre_name}}">{{genre.genre_name}}</label>
+                </span>
+            </div>
+    </div>
+
+    <br>
+
+
+    <div ng-init="loadLocationData()">
+        <a href="#" class="categories">locations</a>
+            <div class="row option-block">
+                <span class="col s1 options-to-check" ng-repeat="location in locations">
+                    <input id="{{location.state_name}}" type="checkbox" ng-model="location.checked" name="locationsChecked[]">
+                    <label for="{{location.state_name}}">{{location.state_name}}</label>
+                </span>
+            </div>
+    </div>
+
+    <br>
+
+
+    <div ng-init="loadDateData()">
+        <a href="#" class="categories">dates</a>
+            <div class="row option-block">
+                <span class= "col s3 options-to-check" ng-repeat="date in dates">
+                    <input id="{{date.month}} {{date.year}}" type="checkbox" ng-model="date.checked" name="datesChecked[]">
+                    <label for="{{date.month}} {{date.year}}">{{date.month}} {{date.year}}</label>
+                </span>
+            </div>
+    </div>
+
+
+    <div>
+        <button class="btn waves-effect waves-light" type="submit" name="action">find my bestival</button>
+    </div>

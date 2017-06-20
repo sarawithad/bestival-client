@@ -6,10 +6,6 @@ app.controller("OptionsCtrl", function($scope, $routeParams, filterFilter, DataF
 
     $scope.allCheckedOptions = [];
 
-    // var choices = OptionsFactory.getSelectedOptions();
-
-    // $scope.allCheckedOptions = choices;
-
     //gets and loads Artist data from bestival API and checks to see which artists have been selected
     $scope.loadArtistData = () => {
         DataFactory.getArtistData()
@@ -97,6 +93,17 @@ app.controller("OptionsCtrl", function($scope, $routeParams, filterFilter, DataF
     $scope.datesChecked = function datesChecked() {
         return filterFilter($scope.dates, {checked: true});
     };
+
+
+    $scope.loadFestivalData = () => {
+        DataFactory.getFestivalData()
+        .then( (response) => {
+            console.log("response:", response);
+            $scope.festivals = response.data;
+        });
+    };
+
+
 
 
 

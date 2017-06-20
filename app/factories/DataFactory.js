@@ -49,8 +49,20 @@ app.factory("DataFactory", function($q, $http){
             });
         });
     };
+
+    let getFestivalData = () => {
+        return $q(function(resolve, reject){
+          $http.get(`http://localhost:8000/festivals`)
+           .then(function(festivalData){
+                resolve(festivalData);
+            })
+            .catch(function(error){
+                reject(error);
+            });
+        });
+    };
     
 
-  return {getArtistData, getGenreData, getLocationData, getDateData};
+  return {getArtistData, getGenreData, getLocationData, getDateData, getFestivalData};
   
 });
