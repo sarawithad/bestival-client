@@ -18,7 +18,7 @@ app.controller("OptionsCtrl", function($scope, $routeParams, filterFilter, DataF
     $scope.loadArtistData = () => {
         DataFactory.getArtistData()
         .then( (artistresponse) => {
-            console.log("artistresponse:", artistresponse);
+            // console.log("artistresponse:", artistresponse);
             $scope.artists = artistresponse.data;
 
             // $scope.$watch('artists|filter:{checked:true}', function (artistvalues) {
@@ -36,14 +36,14 @@ app.controller("OptionsCtrl", function($scope, $routeParams, filterFilter, DataF
     $scope.artistsChecked = function artistsChecked() {
         console.log("inside artistsChecked");
         allCheckedArtists = filterFilter($scope.artists, {checked: true});
-        console.log("allCheckedArtists: ", allCheckedArtists);
+        // console.log("allCheckedArtists: ", allCheckedArtists);
     };
 
     //gets and loads Genre data from bestival API and checks to see which genres have been selected
     $scope.loadGenreData = () => {
         DataFactory.getGenreData()
         .then( (genreresponse) => {
-            console.log("genreresponse:", genreresponse);
+            // console.log("genreresponse:", genreresponse);
             $scope.genres = genreresponse.data;
 
             // $scope.$watch('genres|filter:{checked:true}', function (genrevalues) {
@@ -58,14 +58,14 @@ app.controller("OptionsCtrl", function($scope, $routeParams, filterFilter, DataF
     };
 
     $scope.genresChecked = function genresChecked() {
-        return filterFilter($scope.genres, {checked: true});
+        allCheckedGenres = filterFilter($scope.genres, {checked: true});
     };
 
     //gets and loads location data from bestival API and checks to see which locations have been selected
     $scope.loadLocationData = () => {
         DataFactory.getLocationData()
         .then( (locationresponse) => {
-            console.log("locationresponse:", locationresponse);
+            // console.log("locationresponse:", locationresponse);
             $scope.locations = locationresponse.data;
 
             // $scope.$watch('locations|filter:{checked:true}', function (locationvalues) {
@@ -80,14 +80,15 @@ app.controller("OptionsCtrl", function($scope, $routeParams, filterFilter, DataF
     };
 
     $scope.locationsChecked = function locationsChecked() {
-        return filterFilter($scope.locations, {checked: true});
+        allCheckedLocations = filterFilter($scope.locations, {checked: true});
     };
+
 
     //gets and loads date data from bestival API and checks to see which dates have been selected
     $scope.loadDateData = () => {
         DataFactory.getDateData()
         .then( (dateresponse) => {
-            console.log("dateresponse:", dateresponse);
+            // console.log("dateresponse:", dateresponse);
             $scope.dates = dateresponse.data;
 
             // $scope.$watch('dates|filter:{checked:true}', function (datevalues) {
@@ -102,14 +103,14 @@ app.controller("OptionsCtrl", function($scope, $routeParams, filterFilter, DataF
     };
 
     $scope.datesChecked = function datesChecked() {
-        return filterFilter($scope.dates, {checked: true});
+        allCheckedDates = filterFilter($scope.dates, {checked: true});
     };
 
 
     $scope.loadFestivalData = () => {
         DataFactory.getFestivalData()
         .then( (festivalresponse) => {
-            console.log("festivalresponse:", festivalresponse);
+            // console.log("festivalresponse:", festivalresponse);
             festivals = festivalresponse.data;
         });
     };
@@ -127,11 +128,65 @@ app.controller("OptionsCtrl", function($scope, $routeParams, filterFilter, DataF
 
 
     $scope.makeReco = () => {
-        console.log("inside makeReco click function");
+        // console.log("inside makeReco click function");
         getItAll();
-        console.log("i came back after getItAll function");
+        // console.log("i came back after getItAll function");
 
 
+        //loop through to get checked locations and send festivals with that location to new array
+        for (var a=0; a < festivals.length; a++){
+            let currentFestival = festivals[a];
+            // console.log("festivals[a]: ", festivals[a]);
+
+            for (var b=0; b < festivals[a].location.length; b++){
+                let currentFestivalLocation = festivals[a].location;
+                console.log("currentFestivalLocation: ", currentFestivalLocation);
+                // console.log("allCheckedLocations: ", allCheckedLocations);
+
+                for (var c=0; c < allCheckedLocations.length; c++){
+                    let currentCheckedLocation = allCheckedLocations[c];
+                    // console.log("currentCheckedLocation: ", currentCheckedLocation);
+
+                    // console.log(currentFestivalLocation, currentCheckedLocation.state_name);
+ 
+                    if (currentFestivalLocation === currentCheckedLocation.state_name) {
+                        festivalsWithSelectedLocations.push(currentFestival);
+                    }
+                }
+            }
+        }
+
+        console.log("festivalsWithSelectedLocations: ", festivalsWithSelectedLocations);
+
+
+        //loop through to get checked artists and send festivals with that artist to new array
+        for (var d=0; d < festivals.length; d++){
+            let currentFestival = festivals[d];
+            // console.log("festivals[d]: ", festivals[d]);
+
+            for (var e=0; e < festivals[d].date.length; e++){
+                let currentFestivalDate = festivals[d].date;
+                console.log("currentFestivalDate: ", currentFestivalDate);
+                // console.log("allCheckedDates: ", allCheckedDates);
+
+                for (var f=0; f < allCheckedDates.length; f++){
+                    let currentCheckedDate = allCheckedDates[f];
+                    // console.log("currentCheckedLocation: ", currentCheckedLocation);
+
+                    // console.log(currentFestivalLocation, currentCheckedLocation.state_name);
+ 
+                    if (currentFestivalDate === currentCheckedDate.date) {
+                        festivalsWithSelectedDates.push(currentFestival);
+                    }
+                }
+            }
+        }
+
+        console.log("festivalsWithSelectedDates: ", festivalsWithSelectedDates);
+
+
+
+        //loop through to get checked artists and send festivals with that artist to new array
         for (var i=0; i < festivals.length; i++){
             let currentFestival = festivals[i];
             // console.log("festivals[i]: ", festivals[i]);
@@ -148,15 +203,36 @@ app.controller("OptionsCtrl", function($scope, $routeParams, filterFilter, DataF
                     if (currentFestivalArtist === currentCheckedArtist.artist_name) {
                         festivalsWithSelectedArtists.push(currentFestival);
                     }
-
                 }
             }
-
-
-
         }
+
         console.log("festivalsWithSelectedArtists: ", festivalsWithSelectedArtists);
 
+
+
+        //loop through to get checked artists and send festivals with that artist to new array
+        for (var x=0; x < festivals.length; x++){
+            let currentFestival = festivals[x];
+            // console.log("festivals[i]: ", festivals[i]);
+
+            for (var y=0; y < festivals[x].genres.length; y++){
+                let currentFestivalGenre = festivals[x].genres[y];
+                // console.log("festivals[i].artists[j]: ", festivals[i].artists[j]);
+
+                for (var z=0; z < allCheckedGenres.length; z++){
+                    let currentCheckedGenre = allCheckedGenres[z];
+
+                    console.log(currentFestivalGenre, currentCheckedGenre.genre_name);
+
+                    if (currentFestivalGenre === currentCheckedGenre.genre_name) {
+                        festivalsWithSelectedGenres.push(currentFestival);
+                    }
+                }
+            }
+        }
+
+        console.log("festivalsWithSelectedGenres: ", festivalsWithSelectedGenres);
 
 
 
