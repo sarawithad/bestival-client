@@ -58,7 +58,7 @@ app.controller("OptionsCtrl", function($scope, $routeParams, filterFilter, DataF
     };
 
     $scope.genresChecked = function genresChecked() {
-        return filterFilter($scope.genres, {checked: true});
+        allCheckedGenres = filterFilter($scope.genres, {checked: true});
     };
 
     //gets and loads location data from bestival API and checks to see which locations have been selected
@@ -103,7 +103,7 @@ app.controller("OptionsCtrl", function($scope, $routeParams, filterFilter, DataF
     };
 
     $scope.datesChecked = function datesChecked() {
-        return filterFilter($scope.dates, {checked: true});
+        allCheckedDates = filterFilter($scope.dates, {checked: true});
     };
 
 
@@ -133,7 +133,7 @@ app.controller("OptionsCtrl", function($scope, $routeParams, filterFilter, DataF
         // console.log("i came back after getItAll function");
 
 
-        //loop through to get checked artists and send festivals with that artist to new array
+        //loop through to get checked locations and send festivals with that location to new array
         for (var a=0; a < festivals.length; a++){
             let currentFestival = festivals[a];
             // console.log("festivals[a]: ", festivals[a]);
@@ -148,7 +148,7 @@ app.controller("OptionsCtrl", function($scope, $routeParams, filterFilter, DataF
                     // console.log("currentCheckedLocation: ", currentCheckedLocation);
 
                     // console.log(currentFestivalLocation, currentCheckedLocation.state_name);
-
+ 
                     if (currentFestivalLocation === currentCheckedLocation.state_name) {
                         festivalsWithSelectedLocations.push(currentFestival);
                     }
@@ -157,6 +157,32 @@ app.controller("OptionsCtrl", function($scope, $routeParams, filterFilter, DataF
         }
 
         console.log("festivalsWithSelectedLocations: ", festivalsWithSelectedLocations);
+
+
+        //loop through to get checked artists and send festivals with that artist to new array
+        for (var d=0; d < festivals.length; d++){
+            let currentFestival = festivals[d];
+            // console.log("festivals[d]: ", festivals[d]);
+
+            for (var e=0; e < festivals[d].date.length; e++){
+                let currentFestivalDate = festivals[d].date;
+                console.log("currentFestivalDate: ", currentFestivalDate);
+                // console.log("allCheckedDates: ", allCheckedDates);
+
+                for (var f=0; f < allCheckedDates.length; f++){
+                    let currentCheckedDate = allCheckedDates[f];
+                    // console.log("currentCheckedLocation: ", currentCheckedLocation);
+
+                    // console.log(currentFestivalLocation, currentCheckedLocation.state_name);
+ 
+                    if (currentFestivalDate === currentCheckedDate.date) {
+                        festivalsWithSelectedDates.push(currentFestival);
+                    }
+                }
+            }
+        }
+
+        console.log("festivalsWithSelectedDates: ", festivalsWithSelectedDates);
 
 
 
@@ -183,6 +209,30 @@ app.controller("OptionsCtrl", function($scope, $routeParams, filterFilter, DataF
 
         console.log("festivalsWithSelectedArtists: ", festivalsWithSelectedArtists);
 
+
+
+        //loop through to get checked artists and send festivals with that artist to new array
+        for (var x=0; x < festivals.length; x++){
+            let currentFestival = festivals[x];
+            // console.log("festivals[i]: ", festivals[i]);
+
+            for (var y=0; y < festivals[x].genres.length; y++){
+                let currentFestivalGenre = festivals[x].genres[y];
+                // console.log("festivals[i].artists[j]: ", festivals[i].artists[j]);
+
+                for (var z=0; z < allCheckedGenres.length; z++){
+                    let currentCheckedGenre = allCheckedGenres[z];
+
+                    console.log(currentFestivalGenre, currentCheckedGenre.genre_name);
+
+                    if (currentFestivalGenre === currentCheckedGenre.genre_name) {
+                        festivalsWithSelectedGenres.push(currentFestival);
+                    }
+                }
+            }
+        }
+
+        console.log("festivalsWithSelectedGenres: ", festivalsWithSelectedGenres);
 
 
 
