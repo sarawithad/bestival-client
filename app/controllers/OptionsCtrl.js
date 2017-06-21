@@ -2,14 +2,17 @@
 
 app.controller("OptionsCtrl", function($scope, $routeParams, filterFilter, DataFactory, $location){
 
-    let userSelection = [];
+    // let userSelection = [];
     let festivals = [];
     let allCheckedArtists = [];
     let allCheckedGenres = [];
     let allCheckedLocations = [];
     let allCheckedDates = [];
+    let festivalsWithSelectedArtists = [];
+    let festivalsWithSelectedGenres = [];
+    let festivalsWithSelectedLocations = [];
+    let festivalsWithSelectedDates= [];
     let bestivalReco = [];
-    let selectedArtists = [];
 
     //gets and loads Artist data from bestival API and checks to see which artists have been selected
     $scope.loadArtistData = () => {
@@ -29,6 +32,7 @@ app.controller("OptionsCtrl", function($scope, $routeParams, filterFilter, DataF
         });
     };
 
+    //checks to see which artists are checked by looking for checked: true
     $scope.artistsChecked = function artistsChecked() {
         console.log("inside artistsChecked");
         allCheckedArtists = filterFilter($scope.artists, {checked: true});
@@ -123,20 +127,26 @@ app.controller("OptionsCtrl", function($scope, $routeParams, filterFilter, DataF
 
 
     $scope.makeReco = () => {
-        console.log("inside click function!");
+        console.log("inside makeReco click function");
         getItAll();
-        console.log("i came back");
+        console.log("i came back after getItAll function");
 
 
         for (var i=0; i < festivals.length; i++){
-            console.log("festivals[i]: ", [i], festivals[i].festival_name);
+            let currentFestival = festivals[i];
+            // console.log("festivals[i]: ", festivals[i]);
+
             for (var j=0; j < festivals[i].artists.length; j++){
-                console.log("festivals[i].artists[j]: ", festivals[i].artists[j]);
+                let currentFestivalArtist = festivals[i].artists[j];
+                // console.log("festivals[i].artists[j]: ", festivals[i].artists[j]);
+
                 for (var k=0; k < allCheckedArtists.length; k++){
-                    console.log("allCheckedArtists[k]: ", allCheckedArtists[k].artist_name);
-                    if (festivals[i].artists.indexOf(allCheckedArtists[k]) > -1) {
-                        selectedArtists.push(festivals[i]);
-                        console.log("selectedArtists: ", selectedArtists);
+                    let currentCheckedArtist = allCheckedArtists[k];
+
+                    console.log(currentFestivalArtist, currentCheckedArtist.artist_name);
+
+                    if (currentFestivalArtist === currentCheckedArtist.artist_name) {
+                        festivalsWithSelectedArtists.push(currentFestival);
                     }
 
                 }
@@ -145,6 +155,7 @@ app.controller("OptionsCtrl", function($scope, $routeParams, filterFilter, DataF
 
 
         }
+        console.log("festivalsWithSelectedArtists: ", festivalsWithSelectedArtists);
 
 
 
