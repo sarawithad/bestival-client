@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("RecoCtrl", function($scope, RecoFactory, $location){
+app.controller("RecoCtrl", function($scope, RecoFactory){
 
     $scope.getBestivalReco = function() {
         $scope.RecoArray = RecoFactory.getRecommendation();

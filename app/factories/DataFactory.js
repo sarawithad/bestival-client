@@ -63,9 +63,6 @@ app.factory("DataFactory", function($q, $http){
     };
 
 
-    
-    
-
   return {getArtistData, getGenreData, getLocationData, getDateData, getFestivalData};
   
 });

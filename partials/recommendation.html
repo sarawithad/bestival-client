@@ -1,10 +1,10 @@
 <div ng-init="getBestivalReco()">
-<h1>based on your choices, your best bet is to check out the following festival(s):</h1>
+    <h5>based on your choices, your best bet is to check out the following festival(s):</h5>
 
-    <div ng-repeat="festival in RecoArray">
-    <h3>{{festival.festival_name}}</h3>
-    </div>
+        <div class="collection recoLinks">
+            <a class="collection-item" ng-repeat="festival in RecoArray" ng-href="{{festival.festival_website}}">{{festival.festival_name}}</a>
+        </div>
 
 
-<h2>thanks for using bestival!</h2>
+    <h5>thanks for using bestival!</h5>
 </div>
