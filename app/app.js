@@ -12,13 +12,13 @@ app.config(function($routeProvider) {
       templateUrl: "partials/mainview.html",
       controller: "OptionsCtrl"
     }).
-   when("/bestival/allfestivals", {
-      templateUrl: "partials/allfestivals.html",
-      controller: "OptionsCtrl"
-    }).
+   // when("/bestival/allfestivals", {
+   //    templateUrl: "partials/allfestivals.html",
+   //    controller: "OptionsCtrl"
+   //  }).
    when("/bestival/recommendation", {
       templateUrl: "partials/recommendation.html",
-      controller: "RecoCtrl"
+      controller: "OptionsCtrl"
     }).
     otherwise('/');
 });
