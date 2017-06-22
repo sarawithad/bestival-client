@@ -17,9 +17,8 @@ body {
 .bkgrnd {
     background-color: white;
     opacity: 0.85;
-    max-width: 90%;
-    margin-left: 5em;
-    margin-right: 5em;
+    max-width: 100%;
+    margin: 5em;
 }
 
 .bestival{
@@ -66,4 +65,8 @@ body {
 
 .option-block {
     margin: 2em;
+}
+
+.btn {
+    margin-bottom: 3em;
 }

@@ -13,6 +13,7 @@
     </div>
 
     <br>
+    <br>
 
     <div ng-init="loadGenreData()">
         <a href="#" class="categories">genres</a>
@@ -25,18 +26,19 @@
     </div>
 
     <br>
-
+    <br>
 
     <div ng-init="loadLocationData()">
         <a href="#" class="categories">locations</a>
             <div class="row option-block">
-                <span class="col s1 options-to-check" ng-repeat="location in locations">
+                <span class="col s2 options-to-check" ng-repeat="location in locations">
                     <input id="{{location.state_name}}" type="checkbox" ng-model="location.checked" name="locationsChecked[]">
                     <label for="{{location.state_name}}">{{location.state_name}}</label>
                 </span>
             </div>
     </div>
 
+    <br>
     <br>
 
 
@@ -50,6 +52,7 @@
             </div>
     </div>
 
+    <br>
 
     <div>
         <button class="btn waves-effect waves-light" type="submit" name="action" ng-click="makeReco()">find my bestival</button>
