@@ -1,8 +1,10 @@
+<div ng-init="getBestivalReco()">
 <h1>based on your choices, your best bet is to check out the following festival(s):</h1>
 
-    <div ng-repeat="festival in finalReco">
-    {{festival.festival_name}}
+    <div ng-repeat="festival in RecoArray">
+    <h3>{{festival.festival_name}}</h3>
     </div>
 
 
 <h2>thanks for using bestival!</h2>
+</div>

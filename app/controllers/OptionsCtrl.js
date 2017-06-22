@@ -1,6 +1,9 @@
 "use strict";
+console.log("hi");
 
-app.controller("OptionsCtrl", function($scope, $routeParams, filterFilter, DataFactory, $location){
+app.controller("OptionsCtrl", function($scope, $routeParams, filterFilter, DataFactory, RecoFactory, $location){
+
+console.log("hi again");
 
     let festivals = [];
 
@@ -206,10 +209,13 @@ app.controller("OptionsCtrl", function($scope, $routeParams, filterFilter, DataF
 
         console.log("bestivalReco array: ", bestivalReco);
         console.log("$scope.finalRecoArray: ", $scope.finalRecoArray);
-
-        $location.url("bestival/recommendation");
+        setBestivalReco();
 
     };
 
+        function setBestivalReco() {
+            RecoFactory.setRecommendation($scope.finalRecoArray);
+            $location.url("bestival/recommendation");
+        }
 
 });
