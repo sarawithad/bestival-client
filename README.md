@@ -54,7 +54,7 @@ Once the [bestival API](https://github.com/sarawithad/bestival-API) is up and ru
 localhost:8080
 ```
 
-![bestival landing page](images/bestivalscreen.png?raw=true)
+![bestival landing page](images/bestivalscreen.png)
 
 ## Built With:
 
