@@ -50,7 +50,7 @@ You must have the [bestival API](https://github.com/sarawithad/bestival-API) rep
 
 Once [bestival API](https://github.com/sarawithad/bestival-API) is up and running in a seperate terminal window, you should see this in your browser at ```localhost:8080```
 
-![bestival landing page](images/bestivalscreen.png? raw=true)
+![bestival landing page](images/bestivalscreen.png?raw=true)
 
 ## Built With:
 
