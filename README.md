@@ -46,7 +46,7 @@ Navigate to local host in your browser:
 localhost:8080
 ```
 
-**Note:** You must have the [bestival API](https://github.com/sarawithad/bestival-API) repo cloned and running before the data for user preferences will show up. Please see directions [here](https://github.com/sarawithad/bestival-API) and make sure API is up and running in separate browser window.
+### Note: You must have the [bestival API](https://github.com/sarawithad/bestival-API) repo cloned and running before the data for user preferences will show up. Please see directions [here](https://github.com/sarawithad/bestival-API/blob/master/README.md) and make sure API is up and running in separate browser window.
 
 
 ## Built With:
