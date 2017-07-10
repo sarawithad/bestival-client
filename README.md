@@ -48,7 +48,11 @@ localhost:8080
 
 You must have the [bestival API](https://github.com/sarawithad/bestival-API) repo cloned and running before the data will show up the bestival client-side. Please see directions [here](https://github.com/sarawithad/bestival-API):
 
-Once [bestival API](https://github.com/sarawithad/bestival-API) is up and running in a seperate terminal window, you should see this in your browser at ```localhost:8080```
+Once the [bestival API](https://github.com/sarawithad/bestival-API) is up and running in a seperate terminal window, you should see this in your browser at 
+
+```
+localhost:8080
+```
 
 ![bestival landing page](images/bestivalscreen.png?raw=true)
 
